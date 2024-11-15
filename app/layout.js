@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { Inter } from '@next/font/google';
 import "./globals.css";
 
 const geistSans = localFont({
@@ -11,6 +12,10 @@ const geistMono = localFont({
   variable: "--font-geist-mono",
   weight: "100 900",
 });
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '600', '700']
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -19,10 +24,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" className={inter.className}>
+      <body>
         {children}
       </body>
     </html>
