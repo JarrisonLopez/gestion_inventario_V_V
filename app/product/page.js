@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Link from 'next/link';
 
 function ProductList({ products, filters }) {
   const filteredProducts = products.filter((product) => {
-    const matchesName = product.name.toLowerCase().includes(filters.name.toLowerCase());
+    const matchesName = filters.name ? product.name.toLowerCase().includes(filters.name.toLowerCase()) : true;
     const matchesPrice = filters.price ? product.price <= parseFloat(filters.price) : true;
     return matchesName && matchesPrice;
   });
@@ -27,9 +28,12 @@ function ProductList({ products, filters }) {
           {filteredProducts.map((product) => (
             <tr key={product._id} className="hover:bg-gray-50">
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <Link legacyBehavior href={`/product/${product._id}`}>
-                  <a className="text-blue-600 hover:underline">{product.name}</a>
-                </Link>
+              <Link
+                href={`/product/${product._id}`}
+                className="text-blue-600 hover:underline"
+              >
+                {product.name}
+              </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.price.toFixed(2)}</td>
             </tr>
@@ -39,6 +43,20 @@ function ProductList({ products, filters }) {
     </div>
   );
 }
+
+ProductList.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  filters: PropTypes.shape({
+    name: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  }).isRequired,
+};
 
 function LoadingState() {
   return (
@@ -53,11 +71,17 @@ function ErrorState({ error }) {
     <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
       <strong className="font-bold">Error!</strong>
       <span className="block sm:inline">
-        {error.message || 'Error al cargar los productos. Por favor, intente más tarde.'}
+        {error?.message || 'Error al cargar los productos. Por favor, intente más tarde.'}
       </span>
     </div>
   );
 }
+
+ErrorState.propTypes = {
+  error: PropTypes.shape({
+    message: PropTypes.string,
+  }),
+};
 
 export default function ProductsListPage() {
   const [filters, setFilters] = useState({ name: '', price: '' });
@@ -96,11 +120,11 @@ export default function ProductsListPage() {
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-gray-800">Productos</h1>
-            <Link
-              href="/product/new-product"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out"
-            >
+            <Link href="/product/new-product">
+            <a href="/product/new-product" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out">
               Crear Producto
+            </a>
+
             </Link>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mb-6">

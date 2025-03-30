@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 
 export default function EditProductPage({ params: asyncParams }) {
   const [params, setParams] = useState(null);
-  const [product, setProduct] = useState(null);
   const [form, setForm] = useState({ name: '', description: '', price: '', stock: '' });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -30,7 +30,6 @@ export default function EditProductPage({ params: asyncParams }) {
         const res = await fetch(`/api/product/${params.id}`);
         if (!res.ok) throw new Error('Producto no encontrado');
         const data = await res.json();
-        setProduct(data);
         setForm({
           name: data.name,
           description: data.description,
@@ -207,17 +206,17 @@ export default function EditProductPage({ params: asyncParams }) {
               {validationErrors.stock && <p className="mt-1 text-sm text-red-600">{validationErrors.stock}</p>}
             </div>
           </div>
-          <div className="flex space-x-4">
-            <button
-              type="submit"
-              className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-200"
-              disabled={loading}
-            >
-              {loading ? 'Guardando...' : 'Guardar Cambios'}
-            </button>
-          </div>
+          <button type="submit" className="w-full px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-200">
+            Guardar Cambios
+          </button>
         </form>
       </div>
     </div>
   );
 }
+
+EditProductPage.propTypes = {
+  params: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+  }).isRequired,
+};

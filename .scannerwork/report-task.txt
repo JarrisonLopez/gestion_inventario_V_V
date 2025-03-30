@@ -1,0 +1,6 @@
+projectKey=gestion_inventario
+serverUrl=http://localhost:9000
+serverVersion=25.3.0.104237
+dashboardUrl=http://localhost:9000/dashboard?id=gestion_inventario
+ceTaskId=4296c8eb-59f6-47b6-92a3-a840b44de6da
+ceTaskUrl=http://localhost:9000/api/ce/task?id=4296c8eb-59f6-47b6-92a3-a840b44de6da
