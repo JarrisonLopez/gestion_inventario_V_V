@@ -28,12 +28,9 @@ function ProductList({ products, filters }) {
           {filteredProducts.map((product) => (
             <tr key={product._id} className="hover:bg-gray-50">
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-              <Link
-                href={`/product/${product._id}`}
-                className="text-blue-600 hover:underline"
-              >
-                {product.name}
-              </Link>
+                <Link href={`/product/${product._id}`} className="text-blue-600 hover:underline">
+                  {product.name}
+                </Link>
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product.price.toFixed(2)}</td>
             </tr>
@@ -120,11 +117,8 @@ export default function ProductsListPage() {
         <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-gray-800">Productos</h1>
-            <Link href="/product/new-product">
-            <a href="/product/new-product" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out">
+            <Link href="/product/new-product" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-150 ease-in-out">
               Crear Producto
-            </a>
-
             </Link>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 mb-6">
