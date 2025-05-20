@@ -6,22 +6,31 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "jest --coverage"
   },
   "dependencies": {
     "@cucumber/cucumber": "^11.3.0",
     "@next/font": "^14.2.15",
     "assert": "^2.1.0",
     "bcrypt": "^5.1.1",
+<<<<<<< HEAD
     "cypress": "^14.3.2",
     "jsdom": "^26.1.0",
+=======
+    "jest": "^29.7.0",
+>>>>>>> 87b85e5a9ea5c6af0575b6f05534aa648203f469
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.1",
-    "next": "15.0.3",
+    "next": "^15.3.1",
     "react": "19.0.0-rc-66855b96-20241106",
     "react-dom": "19.0.0-rc-66855b96-20241106",
+<<<<<<< HEAD
     "selenium-webdriver": "^4.32.0",
     "sweetalert2": "^11.14.5"
+=======
+    "sweetalert2": "^11.6.13"
+>>>>>>> 87b85e5a9ea5c6af0575b6f05534aa648203f469
   },
   "devDependencies": {
     "eslint": "^8",
