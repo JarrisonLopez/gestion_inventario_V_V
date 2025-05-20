@@ -9,9 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cucumber/cucumber": "^11.3.0",
     "@next/font": "^14.2.15",
+    "assert": "^2.1.0",
     "bcrypt": "^5.1.1",
     "cypress": "^14.3.2",
+    "jsdom": "^26.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.8.1",
     "next": "15.0.3",
